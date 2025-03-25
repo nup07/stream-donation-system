@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Alerts</title>
+  <style>
+    .alert {
+      background: linear-gradient(90deg, #6441a5, #2a0845);
+      color: white;
+      padding: 15px;
+      margin: 10px;
+      border-radius: 5px;
+      animation: slideIn 0.5s forwards;
+    }
+    @keyframes slideIn {
+      from { transform: translateX(100%); }
+      to { transform: translateX(0); }
+    }
+  </style>
+</head>
+<body>
+  <div id="alerts-container"></div>
+  <script>
+    const ws = new WebSocket('ws://localhost:3000');
+    ws.onmessage = (event) => {
+      const donation = JSON.parse(event.data);
+      const alert = document.createElement('div');
+      alert.className = 'alert';
+      alert.innerHTML = `
+        <strong>New Donation!</strong><br>
+        ${donation.donor_name} donated NPR ${donation.amount}<br>
+        ${donation.message || ''}
+      `;
+      document.getElementById('alerts-container').appendChild(alert);
+      setTimeout(() => alert.remove(), 5000);
+    };
+  </script>
+</body>
+</html>
