@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="dashboard">
+    <h1>Your Donation Alerts</h1>
+    <div class="card">
+      <h3>OBS Alert URL</h3>
+      <input type="text" id="obsUrl" value="http://localhost:3000/alerts.html" readonly>
+      <button onclick="copyToClipboard('obsUrl')">Copy</button>
+    </div>
+  </div>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
